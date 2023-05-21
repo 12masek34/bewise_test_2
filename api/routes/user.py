@@ -28,7 +28,7 @@ router = APIRouter(prefix='/user', tags=['User'])
 
 
 @router.post('', status_code=status.HTTP_201_CREATED)
-async def create_user(data: UserSchema = Depends(), db: AsyncSession = Depends(get_async_db)) -> UserResponseSchema:
+async def create_user(data: UserSchema, db: AsyncSession = Depends(get_async_db)) -> UserResponseSchema:
     """Creates and saves a new user to the database."""
 
     user = await create_new_user(db, data.name)
